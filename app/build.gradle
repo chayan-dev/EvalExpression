@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,12 +48,29 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    annotationProcessor "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+//    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+//    implementation "com.squareup.moshi:moshi:$moshi_version"
+//    annotationProcessor "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+
+    // Room
+    implementation "androidx.room:room-runtime:2.4.2"
+    annotationProcessor "androidx.room:room-compiler:2.4.2"
+
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.4.2"
 
     implementation project(":api")
 }

@@ -6,9 +6,9 @@ import com.squareup.moshi.JsonClass
 import retrofit2.Response
 
 @JsonClass(generateAdapter = true)
-data class ExpressionResponse(
+data class APIResponse(
     @Json(name = "result")
-    val result: List<String>?,
-//    @Json(name = "error")
-//    val error: String?
+    val result: List<String>,
+    @Json(name = "error")
+    val error: String?
 )
