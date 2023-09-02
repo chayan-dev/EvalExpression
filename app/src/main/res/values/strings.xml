@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">EvalExpression</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="evaluate_maths_expressions">Solve Expressions</string>
+  <string name="expression_e_g_1_4">Enter expression (e.g. : 1+4)</string>
+  <string name="solve">Solve</string>
+</resources>
