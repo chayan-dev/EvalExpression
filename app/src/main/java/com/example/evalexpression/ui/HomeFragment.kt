@@ -1,17 +1,22 @@
-package com.example.evalexpression
+package com.example.evalexpression.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.evalexpression.R
 import com.example.evalexpression.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
   lateinit var binding: FragmentHomeBinding
-  val viewModel : MainViewModel by activityViewModels()
+  val viewModel by activityViewModels<MainViewModel>()
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +31,16 @@ class HomeFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     binding.btnSolve.setOnClickListener {
-      viewModel.solveAction(binding.inputEt.text.toString())
+      if(binding.inputEt.text?.isBlank()==true){
+        Toast.makeText(context,"Enter expressions", Toast.LENGTH_SHORT).show()
+      }else{
+        viewModel.solveAction(binding.inputEt.text.toString())
+        findNavController().navigate(R.id.action_homeFragment_to_resultBottomSheet)
+      }
+    }
+
+    binding.history.setOnClickListener {
+      findNavController().navigate(R.id.action_homeFragment_to_historyFragment)
     }
 
 

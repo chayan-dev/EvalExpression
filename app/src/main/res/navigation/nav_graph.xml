@@ -7,16 +7,41 @@
 
   <fragment
     android:id="@+id/homeFragment"
-    android:name="com.example.evalexpression.HomeFragment"
+    android:name="com.example.evalexpression.ui.HomeFragment"
     android:label="fragment_home"
     tools:layout="@layout/fragment_home" >
     <action
       android:id="@+id/action_homeFragment_to_historyFragment"
       app:destination="@id/historyFragment" />
+    <action
+      android:id="@+id/action_homeFragment_to_resultBottomSheet"
+      app:destination="@id/resultBottomSheet" />
   </fragment>
   <fragment
     android:id="@+id/historyFragment"
-    android:name="com.example.evalexpression.HistoryFragment"
+    android:name="com.example.evalexpression.ui.HistoryFragment"
     android:label="fragment_history"
-    tools:layout="@layout/fragment_history" />
+    tools:layout="@layout/fragment_history" >
+    <action
+      android:id="@+id/action_historyFragment_to_historyExpsFragment"
+      app:destination="@id/historyExpsFragment" />
+  </fragment>
+  <dialog
+    android:id="@+id/resultBottomSheet"
+    android:name="com.example.evalexpression.ui.ResultBottomSheet"
+    android:label="fragment_result_bottom_sheet"
+    tools:layout="@layout/fragment_result_bottom_sheet" >
+    <action
+      android:id="@+id/action_resultBottomSheet_to_homeFragment"
+      app:destination="@id/homeFragment" />
+  </dialog>
+  <fragment
+    android:id="@+id/historyExpsFragment"
+    android:name="com.example.evalexpression.ui.HistoryExpsFragment"
+    android:label="fragment_history_exps"
+    tools:layout="@layout/fragment_history_exps" >
+    <action
+      android:id="@+id/action_historyExpsFragment_to_resultBottomSheet"
+      app:destination="@id/resultBottomSheet" />
+  </fragment>
 </navigation>
