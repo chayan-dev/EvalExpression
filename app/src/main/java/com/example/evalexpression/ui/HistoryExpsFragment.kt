@@ -1,7 +1,6 @@
 package com.example.evalexpression.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.evalexpression.R
 import com.example.evalexpression.databinding.FragmentHistoryExpsBinding
 import com.example.evalexpression.db.entity.SavedExpr
-import com.example.evalexpression.models.ExprBody
+import com.example.evalexpression.ui.viewmodels.HistoryViewModel
+import com.example.evalexpression.ui.viewmodels.MainViewModel
 
 class HistoryExpsFragment : Fragment() {
 
@@ -29,6 +29,7 @@ class HistoryExpsFragment : Fragment() {
     // Inflate the layout for this fragment
     binding = FragmentHistoryExpsBinding.inflate(inflater, container, false)
 
+    //show result bottom sheet on clicking an item from recyclerview
     adapter = HistoryExprsAdapter(listOf()){ pos->
       mainViewModel.setEvaluationResultFromDB(allExpressionList[pos],pos)
       findNavController().navigate(R.id.action_historyExpsFragment_to_resultBottomSheet)
@@ -45,20 +46,17 @@ class HistoryExpsFragment : Fragment() {
     binding.title.text = viewModel.currentDate
 
     viewModel.getExpressionsOnDate().observe(viewLifecycleOwner) { result->
-      Log.d("getExpressionsOnDate", result.toString())
       allExpressionList = result
 
       val exprsList = mutableListOf<String>()
-      for (i in result){
+      for (item in result){
         var exprsText=""
-        for (j in i.values){
-          exprsText=exprsText.plus("${j.first} \n")
+        for (subItem in item.values){
+          exprsText=exprsText.plus("${subItem.first} \n")
         }
-        exprsText=exprsText.dropLast(2)
-        Log.d("expsText", exprsText)
+        exprsText=exprsText.dropLast(2)  //removing "\n" from end of text
         exprsList.add(exprsText)
       }
-      Log.d("expsList", exprsList.toString())
       adapter.data = exprsList
       adapter.notifyDataSetChanged()
     }

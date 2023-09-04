@@ -11,13 +11,8 @@ object MathjsClient {
 
   private val retrofitBuilder = Retrofit.Builder()
     .baseUrl(BASE_URL)
-//    .addConverterFactory(MoshiConverterFactory.create())
     .addConverterFactory(GsonConverterFactory.create())
     .build()
-
-//  private val moshi = Moshi.Builder()
-//    .add(KotlinJsonAdapterFactory())
-//    .build()
 
   val api = retrofitBuilder.create(MathjsAPI::class.java)
 }

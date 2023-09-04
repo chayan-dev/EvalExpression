@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.evalexpression.databinding.FragmentResultBottomSheetBinding
-import com.example.evalexpression.ui.MainViewModel
-import com.example.evalexpression.ui.ResultAdapter
+import com.example.evalexpression.ui.viewmodels.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ResultBottomSheet : BottomSheetDialogFragment() {

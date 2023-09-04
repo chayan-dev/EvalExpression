@@ -17,18 +17,9 @@ class ExpressionRepository @Inject constructor(
   private val api: MathjsAPI
   ) {
 
-//  val api = MathjsClient.api
+  suspend fun sendExpressions(exp: JsonObject): Response<ExpResponse> = api.sendExpressions(exp)
 
-  suspend fun sendExpressions(exp: JsonObject): Response<ExpResponse> {
-//    Log.d("solveAction", "before call")
-    val response = api.sendExpressions(exp)
-//    Log.d("solveAction", "after call")
-    return response
-  }
-
-  fun saveExpressions(data: SavedExpr){
-    exprDao.insert(data)
-  }
+  fun saveExpressions(data: SavedExpr)= exprDao.insert(data)
 
   fun getHistoryDates() = exprDao.getSavedDates()
 

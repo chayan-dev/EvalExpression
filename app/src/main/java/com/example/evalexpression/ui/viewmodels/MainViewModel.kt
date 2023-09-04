@@ -1,6 +1,5 @@
-package com.example.evalexpression.ui
+package com.example.evalexpression.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,29 +20,28 @@ class MainViewModel @Inject constructor(private val repository: ExpressionReposi
   private var _expressionsValues: MutableLiveData<List<Pair<String,String>>> = MutableLiveData(listOf())
   val expressionsValues: MutableLiveData<List<Pair<String,String>>> = _expressionsValues
 
+  //called on clicking solve button
   fun solveAction(exp: String){
     var expressionArray = exp.split("\n")
     if(expressionArray.last().isBlank()){
       expressionArray= expressionArray.dropLast(1)
     }
-//    Log.d("solveAction", expressionArray.toString())
 
     sendExpression(expressionArray)
   }
 
+  //send the user input expression to api
   private fun sendExpression(exprList: List<String>) {
-//    _expressionsValues = MutableLiveData()
     viewModelScope.launch {
 
       val obj = ExprBody(exprList)
       val gson = Gson()
       val json = gson.toJsonTree(obj).asJsonObject
-//      Log.d("solveAction", json.toString())
 
       val response  = repository.sendExpressions(json)
-//      Log.d("solveAction_response", response.body().toString())
-      response.body()?.let { setEvaluationResult(it.result, exprList) }
 
+      //handle response from api
+      response.body()?.let { setEvaluationResult(it.result, exprList) }
     }
   }
 
@@ -53,9 +51,10 @@ class MainViewModel @Inject constructor(private val repository: ExpressionReposi
     for (i in exp.indices){
       results.add(Pair(exp[i],result[i]))
     }
-//    Log.d("expValue", results.toString())
 
     _expressionsValues.postValue(results)
+
+    //saving in db
     viewModelScope.launch(Dispatchers.IO){
       repository.saveExpressions(SavedExpr(date = getCurrentTime(), values =  results))
     }

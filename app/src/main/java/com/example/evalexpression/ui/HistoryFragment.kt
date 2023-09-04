@@ -1,17 +1,16 @@
 package com.example.evalexpression.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.evalexpression.R
 import com.example.evalexpression.databinding.FragmentHistoryBinding
+import com.example.evalexpression.ui.viewmodels.HistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +41,6 @@ class HistoryFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
 
     viewModel.getSavedDates().observe(viewLifecycleOwner) { result->
-      Log.d("getSavedDates", result.toString())
       adapter.data = result
       adapter.notifyDataSetChanged()
     }

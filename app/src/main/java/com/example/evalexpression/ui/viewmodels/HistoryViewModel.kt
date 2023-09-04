@@ -1,4 +1,4 @@
-package com.example.evalexpression.ui
+package com.example.evalexpression.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

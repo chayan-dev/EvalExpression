@@ -1,10 +1,11 @@
-package com.example.evalexpression.ui
+package com.example.evalexpression.ui.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.api.models.ExpResponse
 import com.example.evalexpression.db.entity.SavedExpr
 import com.example.evalexpression.getOrAwaitValue
 import com.example.evalexpression.repository.ExpressionRepository
+import com.example.evalexpression.ui.viewmodels.MainViewModel
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -14,7 +15,6 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert.*
 import org.junit.After
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
