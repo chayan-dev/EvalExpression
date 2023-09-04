@@ -13,10 +13,6 @@ interface ExpressionsDao {
   @Insert(onConflict = OnConflictStrategy.IGNORE)
   fun insert(value: SavedExpr)
 
-  @Query("SELECT * FROM solvedValues_table ORDER BY date")
-//  @Query("SELECT * FROM solvedValues_table")
-  fun getSavedValues(): LiveData<List<SavedExpr>>
-
   @Query("SELECT DISTINCT date FROM solvedValues_table ORDER BY date")
   fun getSavedDates(): LiveData<List<String>>
 

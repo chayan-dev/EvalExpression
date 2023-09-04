@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(private val repository: ExpressionReposi
     if(expressionArray.last().isBlank()){
       expressionArray= expressionArray.dropLast(1)
     }
-    Log.d("solveAction", expressionArray.toString())
+//    Log.d("solveAction", expressionArray.toString())
 
     sendExpression(expressionArray)
   }
@@ -38,10 +38,10 @@ class MainViewModel @Inject constructor(private val repository: ExpressionReposi
       val obj = ExprBody(exprList)
       val gson = Gson()
       val json = gson.toJsonTree(obj).asJsonObject
-      Log.d("solveAction", json.toString())
+//      Log.d("solveAction", json.toString())
 
       val response  = repository.sendExpressions(json)
-      Log.d("solveAction_response", response.body().toString())
+//      Log.d("solveAction_response", response.body().toString())
       response.body()?.let { setEvaluationResult(it.result, exprList) }
 
     }
@@ -53,7 +53,7 @@ class MainViewModel @Inject constructor(private val repository: ExpressionReposi
     for (i in exp.indices){
       results.add(Pair(exp[i],result[i]))
     }
-    Log.d("expValue", results.toString())
+//    Log.d("expValue", results.toString())
 
     _expressionsValues.postValue(results)
     viewModelScope.launch(Dispatchers.IO){
